@@ -1,0 +1,99 @@
+<br>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+<!-- Titulo noticias-->
+  <div class="card">
+    <div class="card-content">
+      <p class="title">
+        “{{ title }}”
+      </p>
+      <p class="subtitle">
+        Robert Garcia
+      </p>
+    </div>
+    <footer class="card-footer">
+      <p class="card-footer-item">
+        <span>
+          View on <a href="#">Twitter</a>
+        </span>
+      </p>
+      <p class="card-footer-item">
+        <span>
+          Share on <a href="#">Facebook</a>
+        </span>
+      </p>
+    </footer>
+  </div>
+<br>
+  <!--comentarios-->
+  <article class="media" *ngFor="let comment of comentarios; let num = index">
+    <figure class="media-left">
+      <p class="image is-64x64">
+        <img src="{{avatarsUser}}">
+      </p>
+    </figure>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong>{{comment.nombre}}</strong> <small>{{ comment.alias }}</small> <small class="ml-5">{{ comment.hora }}</small>
+          <br>
+          {{ comment.comentario }}
+        </p>
+      </div>
+      <nav class="level is-mobile">
+        <div class="level-left">
+          <a class="level-item">
+            <span class="icon is-small"><i class="fa fa-reply"></i></span>
+          </a>
+          <a class="level-item">
+            <span class="icon is-small"><i class="fa fa-retweet"></i></span>
+          </a>
+          <a class="level-item">
+            <span class="icon is-small"><i class="fa fa-heart"></i></span>
+          </a>
+        </div>
+      </nav>
+    </div>
+    <div class="media-right">
+      <button class="delete" (click) = "deleteMe(num)"></button>
+    </div>
+  </article>
+
+  <br>
+  <!--Submit comment-->
+  <article class="media">
+    <figure class="media-left">
+      <p class="image is-64x64">
+        <img src="https://bulma.io/images/placeholders/128x128.png">
+      </p>
+    </figure>
+    <div class="media-content">
+      <div class="field">
+        <div class="control">
+          <input class="input text-capitalize" type="text" [(ngModel)] = "nombre" (ngModelChange) = "nombre = $event" placeholder="Type your name">
+        </div>
+      </div>
+      <div class="field">
+        <p class="control">
+          <textarea class="textarea"  [(ngModel)] = "comentario" (ngModelChange) = "comentario = $event" placeholder="Add a comment..."></textarea>
+        </p>
+      </div>
+      <nav class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <a class="button is-info" (click) = "sendComment()">Submit</a>
+          </div>
+        </div>
+        <div class="level-right d-none">
+          <div class="level-item">
+            <label class="checkbox">
+              <input type="checkbox"> Press enter to submit
+            </label>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </article>
+  <!--End form comment-->
+</div>
+<br>
